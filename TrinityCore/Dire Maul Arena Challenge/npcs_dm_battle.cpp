@@ -2420,7 +2420,7 @@ class remove_non_battle_player : public PlayerScript
 		   {
 			   player->TeleportTo(player->GetStartPosition().GetMapId(), player->GetStartPosition().GetPositionX(), player->GetStartPosition().GetPositionY(), 
 			      player->GetStartPosition().GetPositionZ(), player->GetStartPosition().GetOrientation());
-			   ChatHandler(player).SendSysMessage("You cannot be in the Dire Maul Arena while the event is going on!");
+			   ChatHandler(player->GetSession()).SendSysMessage("You cannot be in the Dire Maul Arena while the event is going on!");
 		   }
 	   }
 

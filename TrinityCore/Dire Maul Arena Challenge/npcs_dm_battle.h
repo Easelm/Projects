@@ -347,7 +347,7 @@ void AddEndRewards(Player * player, uint32 honoramount, uint32 tokenId, uint32 t
 {
 	uint32 curHonor = player->GetHonorPoints();
 	player->SetHonorPoints(curHonor + honoramount);
-	ChatHandler(player).PSendSysMessage("Added %u honor!", honoramount);
+	ChatHandler(player->GetSession()).PSendSysMessage("Added %u honor!", honoramount);
 	player->AddItem(tokenId, tokenAmount);
 }
 /* End Battle Functions */

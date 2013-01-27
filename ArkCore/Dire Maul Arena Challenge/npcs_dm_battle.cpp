@@ -55,17 +55,17 @@ class npc_dire_arena_commander : public CreatureScript
 				   m_PlayerGUID = player->GetGUID();
 				   playerName = player->GetName();
 				   isBattleActive = true;
-				   player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+				   player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 				   player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f);
-				   player->PlayerTalkClass->SendCloseGossip();
+				   player->PlayerTalkClass->CloseGossip();
 				  break;
 
 		      case GOSSIP_ACTION_INFO_DEF+2:
-					  player->PlayerTalkClass->SendCloseGossip();
+					  player->PlayerTalkClass->CloseGossip();
 				  break;
 
 		      case GOSSIP_ACTION_INFO_DEF+3:
-					  player->PlayerTalkClass->SendCloseGossip();
+					  player->PlayerTalkClass->CloseGossip();
 				  break;
 		   }
 		   return true;
@@ -210,7 +210,7 @@ class npc_dire_arena_commander : public CreatureScript
 							  if(isWaveBossDead == 1) // Red Blood Guard
 							  {
 								  MessageOnWave(me, EVENT_CHECK_WAVES);
-								  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+								  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 								  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f);
 								  AddEndRewards(player, 500, PVP_END_TOKEN, 1);
 								  events.ScheduleEvent(EVENT_FIRST_WAVE_TREAT, 25000);
@@ -220,7 +220,7 @@ class npc_dire_arena_commander : public CreatureScript
 							  if (isWaveBossDead == 2) // Spawn Event
 							  {
 								  MessageOnWave(me, EVENT_CHECK_WAVES);
-								  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+								  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 								  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f);
 								  AddEndRewards(player, 1000, PVP_END_TOKEN, 2);
 								  events.ScheduleEvent(EVENT_FIRST_WAVE_ELITE, 35000);
@@ -231,7 +231,7 @@ class npc_dire_arena_commander : public CreatureScript
 							  {
 								  MessageOnWave(me, EVENT_CHECK_WAVES);
 								  AddEndRewards(player, 2000, PVP_END_TOKEN, 5);
-								  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+								  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 								  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f);
 								  events.ScheduleEvent(EVENT_SECOND_WAVE, 35000);
 								  isWaveBossDead = 0;
@@ -241,7 +241,7 @@ class npc_dire_arena_commander : public CreatureScript
 							  {
 								  MessageOnWave(me, EVENT_CHECK_WAVES);
 								  AddEndRewards(player, 3000, PVP_END_TOKEN, 10);
-								  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+								  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 								  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f);
 								  events.ScheduleEvent(EVENT_SECOND_WAVE_TREAT, 35000);
 								  isWaveBossDead = 0;
@@ -250,7 +250,7 @@ class npc_dire_arena_commander : public CreatureScript
 							  if(isWaveBossDead == 5) // The Unholys
 							  {
 								  MessageOnWave(me, EVENT_CHECK_WAVES);
-								  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+								  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 								  AddEndRewards(player, 4000, PVP_END_TOKEN, 20);
 								  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f);
 								  events.ScheduleEvent(EVENT_SECOND_WAVE_ELITE, 40000);
@@ -260,7 +260,7 @@ class npc_dire_arena_commander : public CreatureScript
 							  if(isWaveBossDead == 6) // The Riders of the Ice
 							  {
 								  MessageOnWave(me, EVENT_CHECK_WAVES);
-								  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+								  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 								  AddEndRewards(player, 5000, PVP_END_TOKEN, 30);
 								  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f);
 								  events.ScheduleEvent(EVENT_FINAL_WAVE_BOSS, 35000);
@@ -270,7 +270,7 @@ class npc_dire_arena_commander : public CreatureScript
 							  if(isWaveBossDead == 7) // Dragon Final Event
 							  {
 								  MessageOnWave(me, EVENT_CHECK_WAVES);
-								  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+								  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 								  AddEndRewards(player, 10000, PVP_END_TOKEN, 50);
 								  events.ScheduleEvent(EVENT_COMPLETED_WAVES, 5000);
 								  isWaveBossDead = 0;
@@ -278,9 +278,9 @@ class npc_dire_arena_commander : public CreatureScript
 						  }break;
 
 					  case EVENT_FIRST_WAVE:
-						  sLog->outInfo(LOG_FILTER_GENERAL, "[Dire Maul Arena]: Starting First Wave...");
+						  sLog->outString("[Dire Maul Arena]: Starting First Wave...");
 						  MessageOnWave(me, EVENT_FIRST_WAVE);
-						  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+						  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 						  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f); // Making sure you're in the right place
 						  player->PlayDirectSound(SOUND_HORN_WAVE_START);
 						  me->SummonCreature(waveList[0], m_WaveSpawns[0].m_positionX, m_WaveSpawns[0].m_positionY, m_WaveSpawns[0].m_positionZ, m_WaveSpawns[0].m_orientation, 
@@ -294,7 +294,7 @@ class npc_dire_arena_commander : public CreatureScript
 							    TEMPSUMMON_MANUAL_DESPAWN, 0);
 						  me->SummonCreature(NPC_PORTAL, m_WaveSpawns[2].m_positionX, m_WaveSpawns[2].m_positionY, m_WaveSpawns[2].m_positionZ, m_WaveSpawns[2].m_orientation, 
 							    TEMPSUMMON_MANUAL_DESPAWN, 0);
-						  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+						  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 						  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f); // Making sure you're in the right place
 						  player->PlayDirectSound(SOUND_HORN_WAVE_START);
 						  break;
@@ -302,7 +302,7 @@ class npc_dire_arena_commander : public CreatureScript
 					  case EVENT_FIRST_WAVE_ELITE:
 						  MessageOnWave(me, EVENT_FIRST_WAVE_ELITE);
 						  player->PlayDirectSound(SOUND_HORN_WAVE_START);
-						  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+						  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 						  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f); // Making sure you're in the right place
 						  me->SummonCreature(waveList[8], m_WaveSpawns[0].m_positionX, m_WaveSpawns[0].m_positionY, m_WaveSpawns[0].m_positionZ, m_WaveSpawns[0].m_orientation,
 								TEMPSUMMON_MANUAL_DESPAWN, 0);
@@ -311,7 +311,7 @@ class npc_dire_arena_commander : public CreatureScript
 					  case EVENT_SECOND_WAVE:
 						  MessageOnWave(me, EVENT_SECOND_WAVE);
 						  player->PlayDirectSound(SOUND_HORN_WAVE_START);
-						  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+						  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 						  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f); // Making sure you're in the right place
 						  me->SummonCreature(waveList[10], m_WaveSpawns[0].m_positionX, m_WaveSpawns[0].m_positionY, m_WaveSpawns[0].m_positionZ, m_WaveSpawns[0].m_orientation,
 								TEMPSUMMON_MANUAL_DESPAWN, 0);
@@ -320,7 +320,7 @@ class npc_dire_arena_commander : public CreatureScript
 					  case EVENT_SECOND_WAVE_TREAT:
 						  MessageOnWave(me, EVENT_SECOND_WAVE_TREAT);
 						  player->PlayDirectSound(SOUND_HORN_WAVE_START);
-						  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+						  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 						  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f); // Making sure you're in the right place
 						  me->SummonCreature(waveList[13], m_WaveSpawns[0].m_positionX, m_WaveSpawns[0].m_positionY, m_WaveSpawns[0].m_positionZ, m_WaveSpawns[0].m_orientation,
 								TEMPSUMMON_MANUAL_DESPAWN, 0);
@@ -329,17 +329,17 @@ class npc_dire_arena_commander : public CreatureScript
 					  case EVENT_SECOND_WAVE_ELITE:
 						  MessageOnWave(me, EVENT_SECOND_WAVE_ELITE);
 						  player->PlayDirectSound(SOUND_HORN_WAVE_START);
-						  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+						  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 						  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f); // Making sure you're in the right place
 						  me->SummonCreature(waveList[16], m_WaveSpawns[0].m_positionX, m_WaveSpawns[0].m_positionY, m_WaveSpawns[0].m_positionZ, m_WaveSpawns[0].m_orientation,
 								TEMPSUMMON_MANUAL_DESPAWN, 0);
 						  break;
 
 					  case EVENT_FINAL_WAVE_BOSS:
-						  sLog->outInfo(LOG_FILTER_GENERAL, "[Dire Maul Arena]: Starting Final Wave...");
+						  sLog->outString("[Dire Maul Arena]: Starting Final Wave...");
 						  MessageOnWave(me, EVENT_FINAL_WAVE_BOSS);
 						  player->PlayDirectSound(SOUND_HORN_WAVE_START);
-						  player->CastSpell(player, SPELL_TELEPORT_VISUAL);
+						  player->CastSpell(player, SPELL_TELEPORT_VISUAL, true);
 						  player->TeleportTo(1, -3739.533447f, 1095.419434f, 131.969559f, 3.029968f); // Making sure you're in the right place
 						  me->SummonCreature(waveList[19], m_WaveSpawns[0].m_positionX, m_WaveSpawns[0].m_positionY, m_WaveSpawns[0].m_positionZ, m_WaveSpawns[0].m_orientation,
 								TEMPSUMMON_MANUAL_DESPAWN, 0);
@@ -447,7 +447,7 @@ class npc_dire_maul_rb_guard : public CreatureScript
 
 			   if(uiCharge <= diff)
 			   {
-				   me->CastSpell(me->getVictim(), SPELL_BERSERKER_CHARGE);
+				   me->CastSpell(me->getVictim(), SPELL_BERSERKER_CHARGE, true);
 				   uiCharge = 12000;
 			   }
 			   else
@@ -455,8 +455,8 @@ class npc_dire_maul_rb_guard : public CreatureScript
 
 			   if(uiMortalStrike <= diff)
 			   {
-				   me->CastSpell(me->getVictim(), SPELL_MORTAL_STRIKE);
-				   me->CastSpell(me->getVictim(), SPELL_DEEP_WOUNDS); // Cast deep wounds after Mortal strike
+				   me->CastSpell(me->getVictim(), SPELL_MORTAL_STRIKE, true);
+				   me->CastSpell(me->getVictim(), SPELL_DEEP_WOUNDS, true); // Cast deep wounds after Mortal strike
 				   uiMortalStrike = urand(5000, 120000);
 			   }
 			   else
@@ -1149,7 +1149,7 @@ class npc_dm_main_rogue : public CreatureScript
 			   {
 				   if(!InVanish && comboPoints >= 2)
 				   {
-					   me->CastSpell(me->getVictim(), SPELL_ROGUE_FINISHER);
+					   me->CastSpell(me->getVictim(), SPELL_ROGUE_FINISHER, true);
 					   comboPoints = 0;
 				   }
 				   uiFinisherTimer = 4000;
@@ -1179,7 +1179,7 @@ class npc_dm_main_rogue : public CreatureScript
 			   if(uiRuptureTimer <= diff)
 			   {
 				   if(!InVanish)
-					   DoCast(me->getVictim(), SPELL_ROGUE_RUPTURE, true);
+					   DoCast(me->getVictim(), SPELL_ROGUE_RUPTURE);
 				   uiRuptureTimer = 9000;
 			   }
 			   else
@@ -1278,7 +1278,7 @@ class npc_dm_rogue_initiate : public CreatureScript
 			   {
 				   if(!InVanish && comboPoints >= 2)
 				   {
-					   me->CastSpell(me->getVictim(), SPELL_ROGUE_FINISHER);
+					   me->CastSpell(me->getVictim(), SPELL_ROGUE_FINISHER, true);
 					   comboPoints = 0;
 				   }
 				   uiFinisherTimer = 4000;
@@ -1361,7 +1361,7 @@ class npc_dm_main_unholy : public CreatureScript
 			   cinematicPassed = 0;
 			   checkGuin = true;
 			   boneArmor = true;
-			   me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NOT_SELECTABLE);
+			   me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_NOT_SELECTABLE);
 			   me->SetReactState(REACT_PASSIVE);
 			   me->SetUInt32Value(UNIT_VIRTUAL_ITEM_SLOT_ID+0, 51393);
 			   summons.DespawnAll();
@@ -1431,7 +1431,7 @@ class npc_dm_main_unholy : public CreatureScript
 				   {
 					   me->MonsterYell("SO BE IT!", LANG_UNIVERSAL, me->GetGUID());
 					   me->AddAura(SPELL_UNHOLY_BONE_SHIELD, me);
-					   me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NOT_SELECTABLE);
+					   me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_NOT_SELECTABLE);
 					   uiAoeTimer = 25000;
 					   uiPlagueStrikeTimer = urand(5000, 8000);
 					   uiDeathStrikeTimer = urand(9000, 12000);
@@ -1440,7 +1440,7 @@ class npc_dm_main_unholy : public CreatureScript
 					   me->SetReactState(REACT_AGGRESSIVE);
 					   if(twin)
 					   {
-						   twin->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NOT_SELECTABLE);
+						   twin->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_NOT_SELECTABLE);
 						   twin->SetReactState(REACT_AGGRESSIVE);
 					   }
 					   checkGuin = false;
@@ -1538,7 +1538,7 @@ class npc_dm_unholy_twin : public CreatureScript
 			   uiCinematic = 6000;
 			   boneArmor = true;
 			   cinematicPassed = 0;
-			   me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NOT_SELECTABLE);
+			   me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_NOT_SELECTABLE);
 			   me->SetReactState(REACT_PASSIVE);
 			   me->SetUInt32Value(UNIT_VIRTUAL_ITEM_SLOT_ID+0, 51393);
 		   }
@@ -1674,7 +1674,7 @@ class npc_dm_unholy_pet : public CreatureScript
 			   uiEnrageTimer = 5000;
 			   phase = 1;
 			   cinematicPassed = 0;
-			   me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NOT_SELECTABLE);
+			   me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_NOT_SELECTABLE);
 			   me->SetReactState(REACT_PASSIVE);
 		   }
 
@@ -1699,7 +1699,7 @@ class npc_dm_unholy_pet : public CreatureScript
 
 					   case 1:
 						   me->MonsterYell("Well, I'm hungry!", LANG_UNIVERSAL, me->GetGUID());
-						   me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NOT_SELECTABLE);
+						   me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_NOT_SELECTABLE);
 						   me->SetReactState(REACT_AGGRESSIVE);
 						   if(Player * player = me->SelectNearestPlayer(500.0f))
 							   if(player && player->GetGUID() == m_PlayerGUID)
@@ -1822,8 +1822,8 @@ class npc_dm_rider_guardian : public CreatureScript
 			   uiRenewTimer = 5000;
 			   uiGreaterHealTimer = 8000;
 			   me->SetReactState(REACT_PASSIVE);
-			   me->CastSpell(me, SPELL_RIDERS_SHIELD);
-			   me->CastSpell(me, SPELL_RIDERS_STAM_BUFF);
+			   me->CastSpell(me, SPELL_RIDERS_SHIELD, true);
+			   me->CastSpell(me, SPELL_RIDERS_STAM_BUFF, true);
 			   me->SetUInt32Value(UNIT_VIRTUAL_ITEM_SLOT_ID+0, 51453);
 			   checkBrutes = false;
 			   giveUp = false;
@@ -1858,7 +1858,7 @@ class npc_dm_rider_guardian : public CreatureScript
 
 			   if(HealthBelowPct(25) && !giveUp)
 			   {
-				   me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NOT_SELECTABLE);
+				   me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_NOT_SELECTABLE);
 				   me->MonsterYell("I.. I GIVE UP!", LANG_UNIVERSAL, me->GetGUID());
 				   me->SetHealth(me->GetMaxHealth());
 				   checkBrutes = true;
@@ -2127,7 +2127,7 @@ class npc_dm_dragon_final : public CreatureScript
 
 		   void Reset()
 		   {
-			   if(!IsCombatMovementAllowed())
+			   if(!IsCombatMovement())
 				   SetCombatMovement(true);
 
 			   uiFlightTimer = 10000; // 10s
@@ -2173,8 +2173,8 @@ class npc_dm_dragon_final : public CreatureScript
 				   switch(id)
 				   {
 				       case 1:
-						   me->SetFacingTo(sMoveData[0].o);
-						   me->SetDisableGravity(true);
+						   me->SetFacing(sMoveData[0].o);
+						   me->SetLevitate(true);
 						   break;
 				   }
 			   }
@@ -2243,7 +2243,7 @@ class npc_dm_dragon_final : public CreatureScript
 
 				   if(uiFlightTimer <= diff && !IsInFlight)
 				   {
-					   me->SetCanFly(true);
+					   me->SetFlying(true);
 					   me->SetSpeed(MOVE_FLIGHT, 1.3f);					   
 					   me->GetMotionMaster()->MovePoint(1, -3786.241943f, 1096.538452f, 153.903366f);					   
 					   FlameStrikeData = 0;
@@ -2370,8 +2370,8 @@ class npc_dm_dragon_final : public CreatureScript
 
 					   if(uiLandTimer <= diff && canLand)
 					   {
-						   me->SetCanFly(false);
-						   me->SetDisableGravity(false);
+						   me->SetFlying(false);
+						   me->SetLevitate(false);
 						   SetCombatMovement(true);
 						   me->GetMotionMaster()->Clear(false);
 						   me->GetMotionMaster()->MoveChase(me->getVictim());

@@ -345,8 +345,8 @@ void DoSendCompleteMessage(string who)
 
 void AddEndRewards(Player * player, uint32 honoramount, uint32 tokenId, uint32 tokenAmount)
 {
-	uint32 curHonor = player->GetHonorPoints();
-	player->SetHonorPoints(curHonor + honoramount);
+	uint32 curHonor = player->GetCurrency(CURRENCY_TYPE_HONOR_POINTS);
+	player->ModifyHonorPoints(curHonor + honoramount);
 	ChatHandler(player->GetSession()).PSendSysMessage("Added %u honor!", honoramount);
 	player->AddItem(tokenId, tokenAmount);
 }

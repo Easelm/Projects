@@ -91,7 +91,7 @@ class npc_dire_arena_commander : public CreatureScript
 			   checkPlayer = 1000;
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   events.Update(diff);
 
@@ -430,7 +430,7 @@ class npc_dire_maul_rb_guard : public CreatureScript
 			   summoned->GetMotionMaster()->MoveChase(me->getVictim(), 100.0f);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!UpdateVictim())
 			   {
@@ -523,7 +523,7 @@ class npc_dm_wave_trigger : public CreatureScript
 			   spawnPhase = 0;
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!isBattleActive)
 			   {
@@ -735,7 +735,7 @@ class npc_dm_wave_spawns : public CreatureScript
 			   DoEndBattle(me);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!isBattleActive)
 				   me->DespawnOrUnsummon(1);
@@ -765,7 +765,7 @@ class npc_dm_wave_portals : public CreatureScript
 	   {
 		   npc_dm_wave_portalsAI(Creature * c) : ScriptedAI(c) { }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!isBattleActive)
 				   me->DespawnOrUnsummon(1);
@@ -845,7 +845,7 @@ class npc_dm_hank_the_tank : public CreatureScript
 			   summons.Summon(summoned);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!UpdateVictim())
 				   return;
@@ -953,7 +953,7 @@ class npc_dm_field_medic : public CreatureScript
 			   hank = me->FindNearestCreature(NPC_HANK_THE_TANK, 50.0f, true);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!hank)
 				   return;
@@ -1115,7 +1115,7 @@ class npc_dm_main_rogue : public CreatureScript
 			   summons.Summon(summoned);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!UpdateVictim())
 				   return;
@@ -1251,7 +1251,7 @@ class npc_dm_rogue_initiate : public CreatureScript
 			   DoEndBattle(me);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!UpdateVictim())
 				   return;
@@ -1389,7 +1389,7 @@ class npc_dm_main_unholy : public CreatureScript
 			   isWaveBossDead = 5;
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!isBattleActive)
 			   {
@@ -1560,7 +1560,7 @@ class npc_dm_unholy_twin : public CreatureScript
 			   DoEndBattle(me);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(uiCinematic <= diff)
 			   {
@@ -1685,7 +1685,7 @@ class npc_dm_unholy_pet : public CreatureScript
 			   DoEndBattle(me);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(uiCinematicTimer <= diff)
 			   {
@@ -1845,7 +1845,7 @@ class npc_dm_rider_guardian : public CreatureScript
 			   summons.Summon(summoned);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!isBattleActive)
 			   {
@@ -2029,7 +2029,7 @@ class npc_dm_rider_brute : public CreatureScript
 			   DoEndBattle(me);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!UpdateVictim())
 				   return;
@@ -2185,7 +2185,7 @@ class npc_dm_dragon_final : public CreatureScript
 			   summons.Summon(summoned);
 		   }
 
-		   void UpdateAI(const uint32 diff)
+		   void UpdateAI(uint32 diff)
 		   {
 			   if(!UpdateVictim() || m_Phase == PHASE_END)
 				   return;
